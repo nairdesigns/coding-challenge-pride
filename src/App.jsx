@@ -14,28 +14,21 @@ import "./App.css";
 
 function App() {
   const [theArray, setTheArray] = useState([]);
-  const addEntryClick = () => {
-    setTheArray([...theArray, `${theArray.length}`]);
-  };
   const handleSubmit = (event) => {
     event.preventDefault();
+    setTheArray([...theArray, `${event.target.input.value}`]);
   };
 
   return [
     <form onSubmit={handleSubmit}>
-      <input type="button" onClick={addEntryClick} value="Add" />,
       {theArray.map((entry) => (
         <div>{entry}</div>
       ))}
-      <fieldset>
-        <label>
-          <p>Name</p>
-          <input name="name" />
-        </label>
-      </fieldset>
-      <button type="submit" onClick={addEntryClick} value="s">
-        Submit
-      </button>
+      <label>
+        <p>Your Input Here</p>
+        <input name="input" />
+      </label>
+      <button type="submit">Submit</button>
     </form>,
   ];
 }
